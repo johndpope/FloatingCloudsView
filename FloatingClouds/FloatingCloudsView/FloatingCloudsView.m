@@ -15,15 +15,17 @@ static NSString *const kAnimationName = @"moveAnimation";
 @property (nonatomic, assign) CGFloat extendedWidth;
 @property (nonatomic, copy) NSArray *labels;
 @property (nonatomic, strong) NSMutableArray *labelBlocks;
+@property (nonatomic, strong) NSMutableArray *settledLabels;
+@property (nonatomic, strong) UIView *superview;
 
+- (id)initWithSuperview:(UIView *)superview;
 - (void)initialize;
 
 - (void)generateLabels;
 - (void)generateLabelHolderViews;
-- (void)framesForLabels:(NSMutableArray *)settledLabels;
-- (void)framesForLabelHolderViewsWithLabels:(NSMutableArray *)settledLabels;
-- (void)frameForSelf;
-- (void)layoutLablesAndLabelHolderViews;
+- (void)layoutLabels;
+- (void)layoutLabelsAndLabelHolderViews;
+- (void)layoutSelf;
 
 - (void)generateAnimation;
 - (CGFloat)animationDurationBySpeed:(FCFloatingSpeed)speed;
@@ -43,11 +45,23 @@ static NSString *const kAnimationName = @"moveAnimation";
 
 @implementation FloatingCloudsView
 
+- (id)initWithSuperview:(UIView *)superview
+{
+    self = [super init];
+    if (self) {
+        [self initialize];
+        _superview = superview;
+    }
+    return self;
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         [self initialize];
+        _width = frame.size.width;
+        _height = frame.size.height;
     }
     return self;
 }
@@ -56,8 +70,10 @@ static NSString *const kAnimationName = @"moveAnimation";
 {
     _labels = [NSMutableArray array];
     _labelBlocks = [NSMutableArray array];
-    _extendedWidth = 80.0f;
-    _rowHeight = 60.0f;
+    _floatingSpeed = FCFloatingSpeedNormal;
+    _extendedWidth = DefaultExtendedWidth;
+    _rowHeight = DefaultRowHeight;
+    _width = DefaultMaxVisibleWidth;
     _contents = @[@"Breaking Bad is the most awesome TV show.",
                   @"Walter White",
                   @"Jesse Pinkman",
@@ -72,10 +88,7 @@ static NSString *const kAnimationName = @"moveAnimation";
                       [UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1.0],
                       [UIColor colorWithRed:197.0/255.0 green:211.0/255.0 blue:227.0/255.0 alpha:1.0],
                       [UIColor colorWithRed:204.0/255.0 green:217.0/255.0 blue:230.0/255.0 alpha:1.0]];
-    _floatingSpeed = FCFloatingSpeedNormal;
     self.backgroundColor = [UIColor colorWithRed:143.0f/255.0f green:173.0f/255.0f blue:204.0f/255.0f alpha:1.0f];
-    
-    [self layoutLablesAndLabelHolderViews];
 }
 
 #pragma mark - Accessor Methods
@@ -89,13 +102,6 @@ static NSString *const kAnimationName = @"moveAnimation";
 }
 
 #pragma mark - Generate View Methods
-
-- (void)layoutLablesAndLabelHolderViews
-{
-    [self generateLabels];
-    [self generateLabelHolderViews];
-    [self frameForSelf];
-}
 
 - (void)generateLabels
 {
@@ -154,7 +160,7 @@ static NSString *const kAnimationName = @"moveAnimation";
         [unsettledLabels removeObject:formerLabel];
         
         // Check if there's space left for another label to append the current label
-        if ([unsettledLabels count] > 0 && totalWidth < MaxVisibleWidth) {
+        if ([unsettledLabels count] > 0 && totalWidth < self.width) {
             
             // The latter label in a single line
             UILabel *latterLabel = [unsettledLabels lastObject];
@@ -163,7 +169,7 @@ static NSString *const kAnimationName = @"moveAnimation";
             totalWidth += latterLabelWidth;
             
             // Enough space for two labels to stay in a single line
-            if (totalWidth + self.extendedWidth < MaxVisibleWidth) {
+            if (totalWidth + self.extendedWidth < self.width) {
                 NSMutableDictionary *labelDict = [@{@"isNewline": @NO,
                                                     @"label": latterLabel} mutableCopy];
                 [settledLabels addObject:labelDict];
@@ -171,12 +177,12 @@ static NSString *const kAnimationName = @"moveAnimation";
             } else {
                 
                 // The former label's width > half of the screen's width
-                if (formerLabelWidth > MaxVisibleWidth / 2.0f) {
+                if (formerLabelWidth > self.width / 2.0f) {
                     
                     // The latter label's width > half of the screen's width
                     // Move it to the head of the unsettledLabels array
                     // Longer ahead
-                } else if (latterLabelWidth > MaxVisibleWidth / 2.0f) {
+                } else if (latterLabelWidth > self.width / 2.0f) {
                     UILabel *firstLabel = [unsettledLabels firstObject];
                     [unsettledLabels replaceObjectAtIndex:0
                                                withObject:[unsettledLabels lastObject]];
@@ -187,53 +193,52 @@ static NSString *const kAnimationName = @"moveAnimation";
         }
     }
     
-    // Set frame for labels
-    [self framesForLabels:settledLabels];
+    self.settledLabels = settledLabels;
 }
 
-- (void)framesForLabels:(NSMutableArray *)settledLabels;
+- (void)layoutLabels;
 {
     CGFloat x = 0.0f;
     CGFloat y = 0.0f;
     
-    for (NSMutableDictionary *labelDict in settledLabels) {
+    for (NSMutableDictionary *labelDict in self.settledLabels) {
         UILabel *label = labelDict[@"label"];
         CGFloat height = self.rowHeight;
         CGFloat width = label.frame.size.width;
-        NSUInteger index = [settledLabels indexOfObject:labelDict];
+        NSUInteger index = [self.settledLabels indexOfObject:labelDict];
         
         // A new line
         BOOL singleLine = NO;
         BOOL newLine = [labelDict[@"isNewline"] boolValue];
         if (newLine) {
-            if (index < [settledLabels count] - 1) {
-                NSMutableDictionary *latterLabelDict = settledLabels[index + 1];
+            if (index < [self.settledLabels count] - 1) {
+                NSMutableDictionary *latterLabelDict = self.settledLabels[index + 1];
                 singleLine = [latterLabelDict[@"isNewline"] boolValue];
             } else {
                 singleLine = YES;
             }
             x = 0.0f;
-            width = singleLine && width > MaxVisibleWidth ? width + self.extendedWidth : MaxVisibleWidth;
+            width = singleLine && width > self.width ? width + self.extendedWidth : self.width;
             y += index > 0 ? height : 0.0f;
             
             // New label after the former label
         } else {
             
             // Calculate the proportion of the two labels
-            NSMutableDictionary *formerLabelDict = settledLabels[index - 1];
+            NSMutableDictionary *formerLabelDict = self.settledLabels[index - 1];
             UILabel *formerLabel = formerLabelDict[@"label"];
             CGFloat proportion = [self proportionOfFormerUIView:formerLabel
                                                    LatterUIView:label];
             
             // Reset the two labels frame by proportion
-            CGFloat formerLabelBlockViewWidth = MaxVisibleWidth * proportion;
+            CGFloat formerLabelBlockViewWidth = self.width * proportion;
             CGRect formerLabelBlockViewRect = CGRectFromString(formerLabelDict[@"rect"]);
             formerLabelBlockViewRect = CGRectMake(x, y,
                                                   formerLabelBlockViewWidth, formerLabelBlockViewRect.size.height);
             
             // Calculate the latter label's frame
             x += formerLabelBlockViewWidth;
-            width = MaxVisibleWidth - formerLabelBlockViewWidth;
+            width = self.width - formerLabelBlockViewWidth;
             height = formerLabelBlockViewRect.size.height;
             
             // Store the former label's superview's frame
@@ -248,28 +253,36 @@ static NSString *const kAnimationName = @"moveAnimation";
                       forKey:@"rect"];
     }
     
-    self.width = MaxVisibleWidth;
     self.height = y + self.rowHeight;
-    
-    // Layout Labels
-    [self framesForLabelHolderViewsWithLabels:settledLabels];
 }
 
-- (void)framesForLabelHolderViewsWithLabels:(NSMutableArray *)settledLabels
+- (void)layoutLabelsAndLabelHolderViews
 {
-    for (NSMutableDictionary *labelDict in settledLabels) {
+    [self generateLabels];
+    [self generateLabelHolderViews];
+    [self layoutLabels];
+    [self layoutSelf];
+}
+
+- (void)layoutSelf
+{
+    self.frame = CGRectMake(0.0f, 0.0f,
+                            self.width, self.height);
+}
+
+- (void)show
+{
+    [self layoutLabelsAndLabelHolderViews];
+    
+    for (NSMutableDictionary *labelDict in self.settledLabels) {
         UILabel *label = labelDict[@"label"];
         UIView *labelBlockView = [[UIView alloc] init];
         labelBlockView.frame = CGRectFromString(labelDict[@"rect"]);
         [labelBlockView addSubview:label];
         [self addSubview:labelBlockView];
     }
-}
-
-- (void)frameForSelf
-{
-    self.frame = CGRectMake(0.0f, 0.0f,
-                            self.width, self.height);
+    
+    [self.superview addSubview:self];
 }
 
 #pragma mark - Generate Animation Methods
@@ -393,7 +406,7 @@ static NSString *const kAnimationName = @"moveAnimation";
 
 #pragma mark - FloatingCloudsView Delegate Methods
 
-- (void)touchesBegan:(NSSet *)touches
+- (void)touchesEnded:(NSSet *)touches
            withEvent:(UIEvent *)event
 {
     for (UILabel *label in self.labels) {

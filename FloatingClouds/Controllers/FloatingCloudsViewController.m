@@ -25,6 +25,14 @@
     return self;
 }
 
+- (void)loadView
+{
+    UIScrollView *scrollView = [[UIScrollView alloc] init];
+    scrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+    self.view = scrollView;
+    self.title = @"Floating Clouds";
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -33,17 +41,35 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     
-    self.title = @"Floating Clouds";
-    
-    self.floatingCloudsView = [[FloatingCloudsView alloc] init];
+    self.floatingCloudsView = [[FloatingCloudsView alloc] initWithSuperview:self.view];
     self.floatingCloudsView.delegate = self;
-    self.floatingCloudsView.floatingSpeed = FCFloatingSpeedNormal;
-    self.floatingCloudsView.backgroundColor = [UIColor blackColor];
-//    self.floatingCloudsView.randomColors = @[[UIColor whiteColor]];
-//    self.floatingCloudsView.randomFonts = @[[UIFont systemFontOfSize:12.0f]];
-//    self.floatingCloudsView.contents = @[@"Breaking Bad"];
-    self.floatingCloudsView.frame = self.view.bounds;
-    [self.view addSubview:self.floatingCloudsView];
+    
+//    Customize your FloatingCloudsView
+    
+//    self.floatingCloudsView.floatingSpeed = FCFloatingSpeedNormal;
+//    self.floatingCloudsView.rowHeight = 60.0f;
+//    self.floatingCloudsView.width = [UIScreen mainScreen].bounds.size.width;
+//    self.floatingCloudsView.backgroundColor = [UIColor blackColor];
+//    self.floatingCloudsView.contents = @[@"Breaking Bad is the most awesome TV show.",
+//                                         @"Walter White",
+//                                         @"Jesse Pinkman",
+//                                         @"Saul Goodman",
+//                                         @"Mike Ehrmantraut",
+//                                         @"Gustavo Fring",
+//                                         @"Hank Schrader",
+//                                         @"Walter White, Jr."];
+//    self.floatingCloudsView.randomColors = @[[UIColor whiteColor],
+//                                             [UIColor grayColor],
+//                                             [UIColor orangeColor],
+//                                             [UIColor greenColor],
+//                                             [UIColor purpleColor]];
+//    self.floatingCloudsView.randomFonts = @[[UIFont systemFontOfSize:12.0f],
+//                                            [UIFont systemFontOfSize:14.0f],
+//                                            [UIFont systemFontOfSize:16.0f],
+//                                            [UIFont systemFontOfSize:18.0f]];
+    
+    [self.floatingCloudsView show];
+    [(UIScrollView *)self.view setContentSize:self.floatingCloudsView.frame.size];
 }
 
 - (void)viewWillAppear:(BOOL)animated

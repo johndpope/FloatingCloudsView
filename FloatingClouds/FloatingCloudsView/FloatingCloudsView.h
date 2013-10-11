@@ -6,7 +6,9 @@
 //  Copyright (c) 2013年 satgi.me. All rights reserved.
 //
 
-#define MaxVisibleWidth [[UIScreen mainScreen] bounds].size.width
+#define DefaultMaxVisibleWidth [[UIScreen mainScreen] bounds].size.width
+#define DefaultExtendedWidth 80.0f
+#define DefaultRowHeight 60.0f
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
@@ -42,6 +44,8 @@ typedef NS_ENUM(NSUInteger, FCFloatingSpeed){
 
 @property (nonatomic, assign) id<FloatingCloudsViewDelegate> delegate;  // FloatingCloudsView's delegate
 
+- (id)initWithSuperview:(UIView *)superview;
+- (void)show;
 - (void)beginAnimation;
 - (void)stopAnimation;
 
