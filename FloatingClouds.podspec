@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.summary  = 'A collection view of labels with random animation, like the floating clouds.'
   s.license  = 'MIT'
   s.source   = { :git => 'http://106.187.98.195/root/floatingclouds.git', :tag => '0.1' }
-  s.source_files = 'FloatingClouds'
+  s.source_files = 'FloatingClouds/FloatingCloudsView'
   s.platform = :ios
   s.ios.deployment_target = '6.0'
   s.requires_arc = true
