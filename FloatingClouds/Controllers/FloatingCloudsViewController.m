@@ -63,9 +63,9 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)labelHasBeenTapped:(UILabel *)label
+- (void)didTapLabel:(UILabel *)label
 {
-    NSLog(@"Label: %@ has been tapped", label.text);
+    NSLog(@"You tapped label: %@ ", label.text);
 }
 
 @end

@@ -392,7 +392,7 @@ static NSString *const kAnimationName = @"moveAnimation";
         CGPoint touchLocation = [touch locationInView:label];
         if ([label.layer.presentationLayer hitTest:touchLocation])
         {
-            [_delegate labelHasBeenTapped:label];
+            [_delegate didTapLabel:label];
         }
     }
 }

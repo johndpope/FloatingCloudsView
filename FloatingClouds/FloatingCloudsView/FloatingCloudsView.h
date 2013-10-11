@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger, FCFloatingSpeed){
 @optional
 
 // Label has been tapped
-- (void)labelHasBeenTapped:(UILabel *)label;
+- (void)didTapLabel:(UILabel *)label;
 
 @end
 
