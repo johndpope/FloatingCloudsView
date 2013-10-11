@@ -38,7 +38,7 @@
     self.floatingCloudsView = [[FloatingCloudsView alloc] init];
     self.floatingCloudsView.delegate = self;
     self.floatingCloudsView.floatingSpeed = FCFloatingSpeedNormal;
-//    self.floatingCloudsView.backgroundColor = [UIColor blackColor];
+    self.floatingCloudsView.backgroundColor = [UIColor blackColor];
 //    self.floatingCloudsView.randomColors = @[[UIColor whiteColor]];
 //    self.floatingCloudsView.randomFonts = @[[UIFont systemFontOfSize:12.0f]];
 //    self.floatingCloudsView.contents = @[@"Breaking Bad"];
