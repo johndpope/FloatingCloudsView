@@ -1,0 +1,497 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DD57BA3718079DC00076AF4E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD57BA3618079DC00076AF4E /* Foundation.framework */; };
+		DD57BA3918079DC00076AF4E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD57BA3818079DC00076AF4E /* CoreGraphics.framework */; };
+		DD57BA3B18079DC00076AF4E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD57BA3A18079DC00076AF4E /* UIKit.framework */; };
+		DD57BA4118079DC00076AF4E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD57BA3F18079DC00076AF4E /* InfoPlist.strings */; };
+		DD57BA4318079DC00076AF4E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57BA4218079DC00076AF4E /* main.m */; };
+		DD57BA4718079DC00076AF4E /* FCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57BA4618079DC00076AF4E /* FCAppDelegate.m */; };
+		DD57BA4918079DC00076AF4E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD57BA4818079DC00076AF4E /* Images.xcassets */; };
+		DD57BA5018079DC00076AF4E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD57BA4F18079DC00076AF4E /* XCTest.framework */; };
+		DD57BA5118079DC00076AF4E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD57BA3618079DC00076AF4E /* Foundation.framework */; };
+		DD57BA5218079DC00076AF4E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD57BA3A18079DC00076AF4E /* UIKit.framework */; };
+		DD57BA5A18079DC00076AF4E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD57BA5818079DC00076AF4E /* InfoPlist.strings */; };
+		DD57BA5C18079DC00076AF4E /* FloatingCloudsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57BA5B18079DC00076AF4E /* FloatingCloudsTests.m */; };
+		DD57BA6A18079EB10076AF4E /* FloatingCloudsView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57BA6918079EB10076AF4E /* FloatingCloudsView.m */; };
+		DD57BA6D18079ED60076AF4E /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57BA6C18079ED60076AF4E /* RootViewController.m */; };
+		DD57BA7018079F960076AF4E /* FloatingCloudsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57BA6F18079F960076AF4E /* FloatingCloudsViewController.m */; };
+		DD57BA721807A0CD0076AF4E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD57BA711807A0CD0076AF4E /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DD57BA5318079DC00076AF4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD57BA2B18079DC00076AF4E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD57BA3218079DC00076AF4E;
+			remoteInfo = FloatingClouds;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DD57BA3318079DC00076AF4E /* FloatingClouds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloatingClouds.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD57BA3618079DC00076AF4E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DD57BA3818079DC00076AF4E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DD57BA3A18079DC00076AF4E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DD57BA3E18079DC00076AF4E /* FloatingClouds-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FloatingClouds-Info.plist"; sourceTree = "<group>"; };
+		DD57BA4018079DC00076AF4E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DD57BA4218079DC00076AF4E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DD57BA4418079DC00076AF4E /* FloatingClouds-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FloatingClouds-Prefix.pch"; sourceTree = "<group>"; };
+		DD57BA4518079DC00076AF4E /* FCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCAppDelegate.h; sourceTree = "<group>"; };
+		DD57BA4618079DC00076AF4E /* FCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCAppDelegate.m; sourceTree = "<group>"; };
+		DD57BA4818079DC00076AF4E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DD57BA4E18079DC00076AF4E /* FloatingCloudsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FloatingCloudsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD57BA4F18079DC00076AF4E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		DD57BA5718079DC00076AF4E /* FloatingCloudsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FloatingCloudsTests-Info.plist"; sourceTree = "<group>"; };
+		DD57BA5918079DC00076AF4E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DD57BA5B18079DC00076AF4E /* FloatingCloudsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FloatingCloudsTests.m; sourceTree = "<group>"; };
+		DD57BA6818079EB10076AF4E /* FloatingCloudsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingCloudsView.h; sourceTree = "<group>"; };
+		DD57BA6918079EB10076AF4E /* FloatingCloudsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingCloudsView.m; sourceTree = "<group>"; };
+		DD57BA6B18079ED60076AF4E /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		DD57BA6C18079ED60076AF4E /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		DD57BA6E18079F960076AF4E /* FloatingCloudsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingCloudsViewController.h; sourceTree = "<group>"; };
+		DD57BA6F18079F960076AF4E /* FloatingCloudsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingCloudsViewController.m; sourceTree = "<group>"; };
+		DD57BA711807A0CD0076AF4E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DD57BA3018079DC00076AF4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD57BA721807A0CD0076AF4E /* QuartzCore.framework in Frameworks */,
+				DD57BA3918079DC00076AF4E /* CoreGraphics.framework in Frameworks */,
+				DD57BA3B18079DC00076AF4E /* UIKit.framework in Frameworks */,
+				DD57BA3718079DC00076AF4E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD57BA4B18079DC00076AF4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD57BA5018079DC00076AF4E /* XCTest.framework in Frameworks */,
+				DD57BA5218079DC00076AF4E /* UIKit.framework in Frameworks */,
+				DD57BA5118079DC00076AF4E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DD57BA2A18079DC00076AF4E = {
+			isa = PBXGroup;
+			children = (
+				DD57BA3C18079DC00076AF4E /* FloatingClouds */,
+				DD57BA5518079DC00076AF4E /* FloatingCloudsTests */,
+				DD57BA3518079DC00076AF4E /* Frameworks */,
+				DD57BA3418079DC00076AF4E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DD57BA3418079DC00076AF4E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD57BA3318079DC00076AF4E /* FloatingClouds.app */,
+				DD57BA4E18079DC00076AF4E /* FloatingCloudsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DD57BA3518079DC00076AF4E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DD57BA711807A0CD0076AF4E /* QuartzCore.framework */,
+				DD57BA3618079DC00076AF4E /* Foundation.framework */,
+				DD57BA3818079DC00076AF4E /* CoreGraphics.framework */,
+				DD57BA3A18079DC00076AF4E /* UIKit.framework */,
+				DD57BA4F18079DC00076AF4E /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DD57BA3C18079DC00076AF4E /* FloatingClouds */ = {
+			isa = PBXGroup;
+			children = (
+				DD57BA4518079DC00076AF4E /* FCAppDelegate.h */,
+				DD57BA4618079DC00076AF4E /* FCAppDelegate.m */,
+				DD57BA4818079DC00076AF4E /* Images.xcassets */,
+				DD57BA6618079E950076AF4E /* Controllers */,
+				DD57BA6718079E950076AF4E /* FloatingCloudsView */,
+				DD57BA3D18079DC00076AF4E /* Supporting Files */,
+			);
+			path = FloatingClouds;
+			sourceTree = "<group>";
+		};
+		DD57BA3D18079DC00076AF4E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DD57BA3E18079DC00076AF4E /* FloatingClouds-Info.plist */,
+				DD57BA3F18079DC00076AF4E /* InfoPlist.strings */,
+				DD57BA4218079DC00076AF4E /* main.m */,
+				DD57BA4418079DC00076AF4E /* FloatingClouds-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DD57BA5518079DC00076AF4E /* FloatingCloudsTests */ = {
+			isa = PBXGroup;
+			children = (
+				DD57BA5B18079DC00076AF4E /* FloatingCloudsTests.m */,
+				DD57BA5618079DC00076AF4E /* Supporting Files */,
+			);
+			path = FloatingCloudsTests;
+			sourceTree = "<group>";
+		};
+		DD57BA5618079DC00076AF4E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DD57BA5718079DC00076AF4E /* FloatingCloudsTests-Info.plist */,
+				DD57BA5818079DC00076AF4E /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DD57BA6618079E950076AF4E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DD57BA6B18079ED60076AF4E /* RootViewController.h */,
+				DD57BA6C18079ED60076AF4E /* RootViewController.m */,
+				DD57BA6E18079F960076AF4E /* FloatingCloudsViewController.h */,
+				DD57BA6F18079F960076AF4E /* FloatingCloudsViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DD57BA6718079E950076AF4E /* FloatingCloudsView */ = {
+			isa = PBXGroup;
+			children = (
+				DD57BA6818079EB10076AF4E /* FloatingCloudsView.h */,
+				DD57BA6918079EB10076AF4E /* FloatingCloudsView.m */,
+			);
+			path = FloatingCloudsView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DD57BA3218079DC00076AF4E /* FloatingClouds */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD57BA5F18079DC00076AF4E /* Build configuration list for PBXNativeTarget "FloatingClouds" */;
+			buildPhases = (
+				DD57BA2F18079DC00076AF4E /* Sources */,
+				DD57BA3018079DC00076AF4E /* Frameworks */,
+				DD57BA3118079DC00076AF4E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FloatingClouds;
+			productName = FloatingClouds;
+			productReference = DD57BA3318079DC00076AF4E /* FloatingClouds.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DD57BA4D18079DC00076AF4E /* FloatingCloudsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD57BA6218079DC00076AF4E /* Build configuration list for PBXNativeTarget "FloatingCloudsTests" */;
+			buildPhases = (
+				DD57BA4A18079DC00076AF4E /* Sources */,
+				DD57BA4B18079DC00076AF4E /* Frameworks */,
+				DD57BA4C18079DC00076AF4E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD57BA5418079DC00076AF4E /* PBXTargetDependency */,
+			);
+			name = FloatingCloudsTests;
+			productName = FloatingCloudsTests;
+			productReference = DD57BA4E18079DC00076AF4E /* FloatingCloudsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DD57BA2B18079DC00076AF4E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = FC;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = satgi.me;
+				TargetAttributes = {
+					DD57BA4D18079DC00076AF4E = {
+						TestTargetID = DD57BA3218079DC00076AF4E;
+					};
+				};
+			};
+			buildConfigurationList = DD57BA2E18079DC00076AF4E /* Build configuration list for PBXProject "FloatingClouds" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DD57BA2A18079DC00076AF4E;
+			productRefGroup = DD57BA3418079DC00076AF4E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DD57BA3218079DC00076AF4E /* FloatingClouds */,
+				DD57BA4D18079DC00076AF4E /* FloatingCloudsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DD57BA3118079DC00076AF4E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD57BA4118079DC00076AF4E /* InfoPlist.strings in Resources */,
+				DD57BA4918079DC00076AF4E /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD57BA4C18079DC00076AF4E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD57BA5A18079DC00076AF4E /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DD57BA2F18079DC00076AF4E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD57BA7018079F960076AF4E /* FloatingCloudsViewController.m in Sources */,
+				DD57BA4318079DC00076AF4E /* main.m in Sources */,
+				DD57BA4718079DC00076AF4E /* FCAppDelegate.m in Sources */,
+				DD57BA6D18079ED60076AF4E /* RootViewController.m in Sources */,
+				DD57BA6A18079EB10076AF4E /* FloatingCloudsView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD57BA4A18079DC00076AF4E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD57BA5C18079DC00076AF4E /* FloatingCloudsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DD57BA5418079DC00076AF4E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD57BA3218079DC00076AF4E /* FloatingClouds */;
+			targetProxy = DD57BA5318079DC00076AF4E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DD57BA3F18079DC00076AF4E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD57BA4018079DC00076AF4E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DD57BA5818079DC00076AF4E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD57BA5918079DC00076AF4E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DD57BA5D18079DC00076AF4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DD57BA5E18079DC00076AF4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DD57BA6018079DC00076AF4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FloatingClouds/FloatingClouds-Prefix.pch";
+				INFOPLIST_FILE = "FloatingClouds/FloatingClouds-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DD57BA6118079DC00076AF4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FloatingClouds/FloatingClouds-Prefix.pch";
+				INFOPLIST_FILE = "FloatingClouds/FloatingClouds-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		DD57BA6318079DC00076AF4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FloatingClouds.app/FloatingClouds";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FloatingClouds/FloatingClouds-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "FloatingCloudsTests/FloatingCloudsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		DD57BA6418079DC00076AF4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FloatingClouds.app/FloatingClouds";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FloatingClouds/FloatingClouds-Prefix.pch";
+				INFOPLIST_FILE = "FloatingCloudsTests/FloatingCloudsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DD57BA2E18079DC00076AF4E /* Build configuration list for PBXProject "FloatingClouds" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD57BA5D18079DC00076AF4E /* Debug */,
+				DD57BA5E18079DC00076AF4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD57BA5F18079DC00076AF4E /* Build configuration list for PBXNativeTarget "FloatingClouds" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD57BA6018079DC00076AF4E /* Debug */,
+				DD57BA6118079DC00076AF4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DD57BA6218079DC00076AF4E /* Build configuration list for PBXNativeTarget "FloatingCloudsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD57BA6318079DC00076AF4E /* Debug */,
+				DD57BA6418079DC00076AF4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DD57BA2B18079DC00076AF4E /* Project object */;
+}
