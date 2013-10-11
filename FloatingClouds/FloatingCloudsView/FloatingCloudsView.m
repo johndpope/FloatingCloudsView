@@ -18,13 +18,14 @@ static NSString *const kAnimationName = @"moveAnimation";
 
 - (void)initialize;
 
-- (void)addLabels;
 - (void)generateLabels;
-- (void)generateLabelBlocks;
-- (void)generateAnimation;
-- (void)generateFramesForLabels:(NSMutableArray *)settledLabels;
-- (void)layoutlabelBlocksWithArray:(NSMutableArray *)settledLabels;
+- (void)generateLabelHolderViews;
+- (void)framesForLabels:(NSMutableArray *)settledLabels;
+- (void)framesForLabelHolderViewsWithLabels:(NSMutableArray *)settledLabels;
+- (void)frameForSelf;
+- (void)layoutLablesAndLabelHolderViews;
 
+- (void)generateAnimation;
 - (CGFloat)animationDurationBySpeed:(FCFloatingSpeed)speed;
 - (CGPoint)randomPointWithHorizontalEdge:(CGFloat)horizontalEdge
                             verticalEdge:(CGFloat)verticalEdge
@@ -73,7 +74,8 @@ static NSString *const kAnimationName = @"moveAnimation";
                       [UIColor colorWithRed:204.0/255.0 green:217.0/255.0 blue:230.0/255.0 alpha:1.0]];
     _floatingSpeed = FCFloatingSpeedNormal;
     self.backgroundColor = [UIColor colorWithRed:143.0f/255.0f green:173.0f/255.0f blue:204.0f/255.0f alpha:1.0f];
-    [self addLabels];
+    
+    [self layoutLablesAndLabelHolderViews];
 }
 
 #pragma mark - Accessor Methods
@@ -88,10 +90,11 @@ static NSString *const kAnimationName = @"moveAnimation";
 
 #pragma mark - Generate View Methods
 
-- (void)addLabels
+- (void)layoutLablesAndLabelHolderViews
 {
     [self generateLabels];
-    [self generateLabelBlocks];
+    [self generateLabelHolderViews];
+    [self frameForSelf];
 }
 
 - (void)generateLabels
@@ -128,7 +131,7 @@ static NSString *const kAnimationName = @"moveAnimation";
     self.labels = [self lengthSortedLabels:labels];
 }
 
-- (void)generateLabelBlocks
+- (void)generateLabelHolderViews
 {
     NSMutableArray *settledLabels = [[NSMutableArray alloc] init];
     NSMutableArray *unsettledLabels = [self.labels mutableCopy];
@@ -185,10 +188,10 @@ static NSString *const kAnimationName = @"moveAnimation";
     }
     
     // Set frame for labels
-    [self generateFramesForLabels:settledLabels];
+    [self framesForLabels:settledLabels];
 }
 
-- (void)generateFramesForLabels:(NSMutableArray *)settledLabels;
+- (void)framesForLabels:(NSMutableArray *)settledLabels;
 {
     CGFloat x = 0.0f;
     CGFloat y = 0.0f;
@@ -249,10 +252,10 @@ static NSString *const kAnimationName = @"moveAnimation";
     self.height = y + self.rowHeight;
     
     // Layout Labels
-    [self layoutlabelBlocksWithArray:settledLabels];
+    [self framesForLabelHolderViewsWithLabels:settledLabels];
 }
 
-- (void)layoutlabelBlocksWithArray:(NSMutableArray *)settledLabels
+- (void)framesForLabelHolderViewsWithLabels:(NSMutableArray *)settledLabels
 {
     for (NSMutableDictionary *labelDict in settledLabels) {
         UILabel *label = labelDict[@"label"];
@@ -261,6 +264,12 @@ static NSString *const kAnimationName = @"moveAnimation";
         [labelBlockView addSubview:label];
         [self addSubview:labelBlockView];
     }
+}
+
+- (void)frameForSelf
+{
+    self.frame = CGRectMake(0.0f, 0.0f,
+                            self.width, self.height);
 }
 
 #pragma mark - Generate Animation Methods
