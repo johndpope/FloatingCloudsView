@@ -24,6 +24,7 @@ static NSString *const kAnimationName = @"moveAnimation";
 - (void)generateLabels;
 - (void)generateLabelHolderViews;
 - (void)layoutLabels;
+- (void)layoutLabelHolderViews;
 - (void)layoutLabelsAndLabelHolderViews;
 - (void)layoutSelf;
 
@@ -256,12 +257,23 @@ static NSString *const kAnimationName = @"moveAnimation";
     self.height = y + self.rowHeight;
 }
 
+- (void)layoutLabelHolderViews
+{
+    for (NSMutableDictionary *labelDict in self.settledLabels) {
+        UILabel *label = labelDict[@"label"];
+        UIView *labelBlockView = [[UIView alloc] init];
+        labelBlockView.frame = CGRectFromString(labelDict[@"rect"]);
+        [labelBlockView addSubview:label];
+        [self addSubview:labelBlockView];
+    }
+}
+
 - (void)layoutLabelsAndLabelHolderViews
 {
     [self generateLabels];
     [self generateLabelHolderViews];
     [self layoutLabels];
-    [self layoutSelf];
+    [self layoutLabelHolderViews];
 }
 
 - (void)layoutSelf
@@ -273,15 +285,7 @@ static NSString *const kAnimationName = @"moveAnimation";
 - (void)show
 {
     [self layoutLabelsAndLabelHolderViews];
-    
-    for (NSMutableDictionary *labelDict in self.settledLabels) {
-        UILabel *label = labelDict[@"label"];
-        UIView *labelBlockView = [[UIView alloc] init];
-        labelBlockView.frame = CGRectFromString(labelDict[@"rect"]);
-        [labelBlockView addSubview:label];
-        [self addSubview:labelBlockView];
-    }
-    
+    [self layoutSelf];
     [self.superview addSubview:self];
 }
 
