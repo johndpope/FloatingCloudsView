@@ -219,7 +219,8 @@
                 singleLine = YES;
             }
             x = 0.0f;
-            width = singleLine && width > self.width ? width + self.extendedWidth : self.width;
+//            width = singleLine && width > self.width ? width + self.extendedWidth : self.width;
+            width = self.width;
             y += index > 0 ? height : 0.0f;
             
             // New label after the former label
@@ -296,7 +297,7 @@
     for (UILabel *label in self.labels) {
 
         UIBezierPath *path = [self pathForLabel:label
-                               movingPointCount:2];
+                               movingPointCount:1];
         
         // Animation Settings
         CGFloat randomDuration = [self animationDurationBySpeed:self.floatingSpeed];
@@ -313,30 +314,44 @@
 {
     CGSize labelSuperViewSize = label.superview.frame.size;
     CGSize labelSize = label.frame.size;
+    CGFloat widthRange = labelSuperViewSize.width - labelSize.width;
+    CGFloat heightRange = labelSuperViewSize.height - labelSize.height;
     
-    CGFloat maxWidth = MAX(labelSuperViewSize.width, labelSize.width);
-    CGFloat minWidth = MIN(labelSuperViewSize.width, labelSize.width);
-    CGFloat widthRange = maxWidth - minWidth;
-    
-    CGFloat maxHeight = MAX(labelSuperViewSize.height, labelSize.height);
-    CGFloat minHeight = MIN(labelSuperViewSize.height, labelSize.height);
-    CGFloat heightRange = maxHeight - minHeight;
-    
-    // Generate random point
-    CGPoint startPoint = [self randomPointWithHorizontalEdge:minWidth / 2.0f
-                                                verticalEdge:minHeight / 2.0f
-                                                  widthRange:widthRange
-                                                 heightRange:heightRange];
-    
-    // Moving path with random points
+    // Animation path
     UIBezierPath *path = [UIBezierPath bezierPath];
-    [path moveToPoint:startPoint];
-    for (NSUInteger i = 0; i < pointCount; i++) {
-        CGPoint point = [self randomPointWithHorizontalEdge:minWidth / 2.0f
-                                               verticalEdge:minHeight / 2.0f
-                                                 widthRange:widthRange
-                                                heightRange:heightRange];
-        [path addLineToPoint:point];
+    CGPoint startCenter = label.center;
+    CGPoint startPoint;
+    
+    // When label's width > screen's width
+    // Let the label float from it's head to tail for the user to see the whole content
+    if (labelSize.width > labelSuperViewSize.width) {
+        
+        CGFloat horizontalMargin = 10.0f;
+        
+        startPoint = CGPointMake(startCenter.x + horizontalMargin,
+                                 startCenter.y + arc4random_uniform(abs(labelSuperViewSize.height - labelSize.height)));
+        
+        [path moveToPoint:startPoint];
+        CGPoint endPoint = CGPointMake(startCenter.x - (labelSize.width - labelSuperViewSize.width + horizontalMargin),
+                                       startCenter.y + arc4random_uniform(abs(labelSuperViewSize.height - labelSize.height)));
+        [path addLineToPoint:endPoint];
+    } else {
+        // Start point
+        startPoint = [self randomPointWithHorizontalEdge:labelSize.width / 2.0f
+                                            verticalEdge:labelSize.height / 2.0f
+                                              widthRange:widthRange
+                                             heightRange:heightRange];
+        
+        [path moveToPoint:startPoint];
+        
+        // Moving path with random points
+        for (NSUInteger i = 0; i < pointCount; i++) {
+            CGPoint point = [self randomPointWithHorizontalEdge:labelSize.width / 2.0f
+                                                   verticalEdge:labelSize.height / 2.0f
+                                                     widthRange:widthRange
+                                                    heightRange:heightRange];
+            [path addLineToPoint:point];
+        }
     }
     [path closePath];
     return path;
@@ -371,8 +386,8 @@
                               widthRange:(CGFloat)widthRange
                              heightRange:(CGFloat)heightRange
 {
-    CGFloat randomX = horizontalEdge + arc4random_uniform(widthRange);
-    CGFloat randomY = verticalEdge + arc4random_uniform(heightRange);
+    CGFloat randomX = horizontalEdge + arc4random_uniform(abs(widthRange));
+    CGFloat randomY = verticalEdge + arc4random_uniform(abs(heightRange));
     CGPoint point = CGPointMake(randomX, randomY);
     return point;
 }
