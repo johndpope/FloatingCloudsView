@@ -8,8 +8,6 @@
 
 #import "FloatingCloudsView.h"
 
-static NSString *const kAnimationName = @"moveAnimation";
-
 @interface FloatingCloudsView ()
 
 @property (nonatomic, assign) CGFloat extendedWidth;
@@ -29,6 +27,8 @@ static NSString *const kAnimationName = @"moveAnimation";
 - (void)layoutSelf;
 
 - (void)generateAnimation;
+- (UIBezierPath *)pathForLabel:(UILabel *)label
+              movingPointCount:(NSUInteger)pointCount;
 - (CGFloat)animationDurationBySpeed:(FCFloatingSpeed)speed;
 - (CGPoint)randomPointWithHorizontalEdge:(CGFloat)horizontalEdge
                             verticalEdge:(CGFloat)verticalEdge
@@ -72,9 +72,9 @@ static NSString *const kAnimationName = @"moveAnimation";
     _labels = [NSMutableArray array];
     _labelBlocks = [NSMutableArray array];
     _floatingSpeed = FCFloatingSpeedNormal;
-    _extendedWidth = DefaultExtendedWidth;
-    _rowHeight = DefaultRowHeight;
-    _width = DefaultMaxVisibleWidth;
+    _extendedWidth = FCExtendedWidth;
+    _rowHeight = FCRowHeight;
+    _width = FCMaxVisibleWidth;
     _contents = @[@"Breaking Bad is the most awesome TV show.",
                   @"Walter White",
                   @"Jesse Pinkman",
@@ -294,33 +294,9 @@ static NSString *const kAnimationName = @"moveAnimation";
 - (void)generateAnimation
 {
     for (UILabel *label in self.labels) {
-        CGRect superViewRect = label.superview.frame;
-        CGSize labelSize = label.frame.size;
-        
-        CGFloat maxWidth = MAX(superViewRect.size.width, labelSize.width);
-        CGFloat minWidth = MIN(superViewRect.size.width, labelSize.width);
-        CGFloat widthRange = maxWidth - minWidth;
-        
-        CGFloat maxHeight = MAX(superViewRect.size.height, labelSize.height);
-        CGFloat minHeight = MIN(superViewRect.size.height, labelSize.height);
-        CGFloat heightRange = maxHeight - minHeight;
-        
-        // Generate path with random point
-        CGPoint point = [self randomPointWithHorizontalEdge:minWidth / 2.0f
-                                               verticalEdge:minHeight / 2.0f
-                                                 widthRange:widthRange
-                                                heightRange:heightRange];
-        
-        CGPoint point2 = [self randomPointWithHorizontalEdge:minWidth / 2.0f
-                                                verticalEdge:minHeight / 2.0f
-                                                  widthRange:widthRange
-                                                 heightRange:heightRange];
-        
-        // Moving path
-        UIBezierPath *path = [UIBezierPath bezierPath];
-        [path moveToPoint:point];
-        [path addLineToPoint:point2];
-        [path closePath];
+
+        UIBezierPath *path = [self pathForLabel:label
+                               movingPointCount:2];
         
         // Animation Settings
         CGFloat randomDuration = [self animationDurationBySpeed:self.floatingSpeed];
@@ -328,8 +304,42 @@ static NSString *const kAnimationName = @"moveAnimation";
         moveAnimation.path = path.CGPath;
         moveAnimation.duration = randomDuration;
         moveAnimation.repeatCount = MAXFLOAT;
-        [label.layer addAnimation:moveAnimation forKey:kAnimationName];
+        [label.layer addAnimation:moveAnimation forKey:FCLabelAnimationName];
     }
+}
+
+- (UIBezierPath *)pathForLabel:(UILabel *)label
+              movingPointCount:(NSUInteger)pointCount
+{
+    CGSize labelSuperViewSize = label.superview.frame.size;
+    CGSize labelSize = label.frame.size;
+    
+    CGFloat maxWidth = MAX(labelSuperViewSize.width, labelSize.width);
+    CGFloat minWidth = MIN(labelSuperViewSize.width, labelSize.width);
+    CGFloat widthRange = maxWidth - minWidth;
+    
+    CGFloat maxHeight = MAX(labelSuperViewSize.height, labelSize.height);
+    CGFloat minHeight = MIN(labelSuperViewSize.height, labelSize.height);
+    CGFloat heightRange = maxHeight - minHeight;
+    
+    // Generate random point
+    CGPoint startPoint = [self randomPointWithHorizontalEdge:minWidth / 2.0f
+                                                verticalEdge:minHeight / 2.0f
+                                                  widthRange:widthRange
+                                                 heightRange:heightRange];
+    
+    // Moving path with random points
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:startPoint];
+    for (NSUInteger i = 0; i < pointCount; i++) {
+        CGPoint point = [self randomPointWithHorizontalEdge:minWidth / 2.0f
+                                               verticalEdge:minHeight / 2.0f
+                                                 widthRange:widthRange
+                                                heightRange:heightRange];
+        [path addLineToPoint:point];
+    }
+    [path closePath];
+    return path;
 }
 
 - (CGFloat)animationDurationBySpeed:(FCFloatingSpeed)speed

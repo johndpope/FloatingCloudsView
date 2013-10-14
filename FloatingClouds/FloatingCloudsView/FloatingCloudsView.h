@@ -6,9 +6,10 @@
 //  Copyright (c) 2013年 satgi.me. All rights reserved.
 //
 
-#define DefaultMaxVisibleWidth [[UIScreen mainScreen] bounds].size.width
-#define DefaultExtendedWidth 80.0f
-#define DefaultRowHeight 60.0f
+#define FCMaxVisibleWidth [[UIScreen mainScreen] bounds].size.width
+#define FCExtendedWidth 80.0f
+#define FCRowHeight 60.0f
+#define FCLabelAnimationName @"moveAnimation"
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
