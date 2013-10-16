@@ -35,7 +35,7 @@ typedef NS_ENUM(NSUInteger, FCFloatingSpeed){
 
 @interface FloatingCloudsView : UIView
 
-@property (nonatomic, assign) FCFloatingSpeed floatingSpeed;            // Animation Speed
+@property (nonatomic, assign) FCFloatingSpeed floatingSpeed;            // Animation Speed Of labels
 @property (nonatomic, copy) NSArray *contents;                          // Contents array that holds labels' text
 @property (nonatomic, copy) NSArray *randomColors;                      // Random colors array
 @property (nonatomic, copy) NSArray *randomFonts;                       // Random fonts array

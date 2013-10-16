@@ -29,6 +29,7 @@
 {
     UIScrollView *scrollView = [[UIScrollView alloc] init];
     scrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+    scrollView.alwaysBounceVertical = YES;
     self.view = scrollView;
     self.title = @"Floating Clouds";
 }
@@ -88,6 +89,8 @@
 {
     [super didReceiveMemoryWarning];
 }
+
+#pragma mark - FloatingCloudsViewDelegate
 
 - (void)didTapLabel:(UILabel *)label
 {

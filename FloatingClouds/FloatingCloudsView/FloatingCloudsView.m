@@ -56,17 +56,6 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self initialize];
-        _width = frame.size.width;
-        _height = frame.size.height;
-    }
-    return self;
-}
-
 - (void)initialize
 {
     _labels = [NSMutableArray array];
@@ -92,7 +81,7 @@
     self.backgroundColor = [UIColor colorWithRed:143.0f/255.0f green:173.0f/255.0f blue:204.0f/255.0f alpha:1.0f];
 }
 
-#pragma mark - Accessor Methods
+#pragma mark - Accessor
 
 - (void)setLabels:(NSArray *)labels
 {
@@ -102,7 +91,7 @@
     _labels = labels;
 }
 
-#pragma mark - Generate View Methods
+#pragma mark - UIView
 
 - (void)generateLabels
 {
@@ -180,9 +169,9 @@
                 // The former label's width > half of the screen's width
                 if (formerLabelWidth > self.width / 2.0f) {
                     
-                    // The latter label's width > half of the screen's width
-                    // Move it to the head of the unsettledLabels array
-                    // Longer ahead
+                // The latter label's width > half of the screen's width
+                // Move it to the head of the unsettledLabels array
+                // Longer ahead
                 } else if (latterLabelWidth > self.width / 2.0f) {
                     UILabel *firstLabel = [unsettledLabels firstObject];
                     [unsettledLabels replaceObjectAtIndex:0
@@ -290,7 +279,7 @@
     [self.superview addSubview:self];
 }
 
-#pragma mark - Generate Animation Methods
+#pragma mark - Generate Animation
 
 - (void)generateAnimation
 {
@@ -392,7 +381,7 @@
     return point;
 }
 
-#pragma mark - Helper Methods
+#pragma mark - Helper
 
 - (id)randomElement:(NSArray *)array
 {
@@ -433,7 +422,7 @@
 }
 
 
-#pragma mark - FloatingCloudsView Delegate Methods
+#pragma mark - FloatingCloudsViewDelegate
 
 - (void)touchesEnded:(NSSet *)touches
            withEvent:(UIEvent *)event
@@ -448,7 +437,7 @@
     }
 }
 
-#pragma mark - Animation Control Methods
+#pragma mark - Animation Control
 
 - (void)beginAnimation
 {

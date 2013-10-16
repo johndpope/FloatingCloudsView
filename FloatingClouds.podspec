@@ -9,5 +9,6 @@ Pod::Spec.new do |s|
   s.source_files = 'FloatingClouds/FloatingCloudsView'
   s.platform = :ios
   s.ios.deployment_target = '6.0'
+  s.frameworks = 'QuartzCore'
   s.requires_arc = true
 end
