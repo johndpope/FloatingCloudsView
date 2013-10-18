@@ -1,7 +1,10 @@
 FloatingCloudsView
 ==================
 
+## Intro
 A collection view of labels with random animation, like the floating clouds.
+
+![](https://f.cloud.github.com/assets/993797/1359518/6694e0aa-37df-11e3-91ff-148e5f403b5f.gif)
 
 ## Usage
 
