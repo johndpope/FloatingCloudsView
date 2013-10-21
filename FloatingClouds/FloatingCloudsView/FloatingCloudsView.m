@@ -274,9 +274,9 @@
 
 - (void)show
 {
+    [self.superview addSubview:self];
     [self layoutLabelsAndLabelHolderViews];
     [self layoutSelf];
-    [self.superview addSubview:self];
 }
 
 #pragma mark - Generate Animation
