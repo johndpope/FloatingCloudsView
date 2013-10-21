@@ -57,6 +57,22 @@ floatingCloudsView.randomFonts = @[[UIFont systemFontOfSize:12.0f],
 [floatingCloudsView stopAnimation];
 ```
 
+## Install
+
+#### Cocoapods
+
+```ruby
+pod 'FloatingClouds', :git => 'https://github.com/satgi/FloatingCloudsView.git'
+```
+
+#### Source files
+
+Add source files in folder `FloatingCloudsView` to your project.
+
+```objective-c
+#import "FloatingCloudsView.h"
+```
+
 ## To do
 - Height automated
 - Multilined labels
