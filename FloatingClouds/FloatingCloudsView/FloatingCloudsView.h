@@ -43,7 +43,7 @@ typedef NS_ENUM(NSUInteger, FCFloatingSpeed){
 @property (nonatomic, assign) CGFloat width;                            // Width of FloatingCloudsView
 @property (nonatomic, assign) CGFloat height;                           // Height of FloatingCloudsView
 
-@property (nonatomic, assign) id<FloatingCloudsViewDelegate> delegate;  // FloatingCloudsView's delegate
+@property (nonatomic, weak) id<FloatingCloudsViewDelegate> delegate;  // FloatingCloudsView's delegate
 
 - (id)initWithSuperview:(UIView *)superview;
 - (void)show;

@@ -432,7 +432,9 @@
         CGPoint touchLocation = [touch locationInView:label];
         if ([label.layer.presentationLayer hitTest:touchLocation])
         {
-            [_delegate didTapLabel:label];
+            if ([_delegate respondsToSelector:@selector(didTapLabel:)]) {
+                [_delegate didTapLabel:label];
+            }
         }
     }
 }
